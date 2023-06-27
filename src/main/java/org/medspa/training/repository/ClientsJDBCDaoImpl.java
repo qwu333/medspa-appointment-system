@@ -20,7 +20,7 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
     @Override
     public List<Clients> getClients() {
         List<Clients> clients = new ArrayList<Clients>();
-        Logger logger = LoggerFactory.getLogger(getClass());
+        Logger logger = LoggerFactory.getLogger(ClientsJDBCDaoImpl.class);
         logger.debug("Started to getClients from Postgres via JDBC");
 
         //1. Prepare required data model
@@ -43,11 +43,11 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
                 long id = rs.getLong("id");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                long phoneNumber = rs.getLong("phoneNumber");
+                int phoneNumber = rs.getInt("phoneNumber");
                 String emailAddress = rs.getString("emailAddress");
                 String allergies = rs.getString("allergies");
                 String targets = rs.getString("targets");
-                String nursePreferences = rs.getString("nursePreferences");
+
 
                 Clients client = new Clients();
                 client.setId(id);
@@ -57,8 +57,10 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
                 client.setEmailAddress(emailAddress);
                 client.setAllergies(allergies);
                 client.setTargets(targets);
-                client.setNursePreferences(nursePreferences);
+
                 clients.add(client);
+
+
             }
 
 

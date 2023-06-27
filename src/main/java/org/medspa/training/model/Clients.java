@@ -1,16 +1,35 @@
 package org.medspa.training.model;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Clients")
 public class Clients {
     public Clients(){}
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+
+    @Column(name = "First_Name")
     private String firstName;
+
+    @Column(name = "Last_Name")
     private String lastName;
-    private long phoneNumber;
+
+    @Column(name = "Phone_Number")
+    private int phoneNumber;
+
+    @Column(name = "Email_Address")
     private String emailAddress;
+
+    @Column(name = "Allergies")
     private String allergies;
+
+    @Column(name = "Targets")
     private String targets;
-    private String nursePreferences;
+
+
 
     public void setId(long id){
         this.id = id;
@@ -24,7 +43,7 @@ public class Clients {
         this.lastName = lastName;
     }
 
-    public void setPhoneNumber (long phoneNumber){
+    public void setPhoneNumber (int phoneNumber){
         this.phoneNumber = phoneNumber;
     }
 
@@ -39,7 +58,8 @@ public class Clients {
     public void setTargets(String targets){
         this.targets = targets;
     }
-    public void setNursePreferences(String nursePreferences){
-        this.nursePreferences=nursePreferences;
+
     }
-}
+
+
+

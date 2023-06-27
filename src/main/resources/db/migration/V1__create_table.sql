@@ -14,20 +14,20 @@ CREATE TABLE Clients (
                          name            VARCHAR(30) not null unique,
                          First_Name      VARCHAR(30),
                          Last_Name       VARCHAR(30),
-                         Phone_Number    NUMERIC(10,10),
+                         Phone_Number    INT,
                          Email_Address   VARCHAR(100),
                          Allergies       VARCHAR(150),
-                         Targets         VARCHAR(150),
-                         Nurse_Preference VARCHAR(50)
+                         Targets         VARCHAR(150)
+
 );
 ALTER TABLE Clients ADD CONSTRAINT clients_pk PRIMARY KEY ( id );
 
 CREATE TABLE Appointments (
                               id             BIGSERIAL NOT NULL,
-                              Client_ID    INTEGER,
-                              Date         Integer,
+                              Client_ID    BIGINT,
+                              Date         DATE,
                               Time         TIME,
-                              Treatment    INTEGER NOT NULL
+                              Treatment    BIGINT
 );
 ALTER TABLE Appointments ADD CONSTRAINT Appointments_pk PRIMARY KEY ( id );
 
