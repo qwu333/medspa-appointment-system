@@ -1,40 +1,39 @@
-CREATE TABLE Treatments (
+CREATE TABLE treatments (
                             id          BIGSERIAL NOT NULL,
-                            Treatment_Name        VARCHAR(30) not null unique,
-                            Treatment_Cost        MONEY,
-                            Treatment_Price       MONEY,
-                            Treatment_Length      INTEGER,
-                            Treatment_Target      VARCHAR(150),
-                            Nurses                VARCHAR(50)
+                            treatment_name        VARCHAR(30) not null unique,
+                            treatment_cost        numeric(19,2),
+                            treatment_price       numeric(19,2),
+                            treatment_length      INTEGER,
+                            treatment_target      VARCHAR(150),
+                            nurses                VARCHAR(50)
 );
-ALTER TABLE Treatments ADD CONSTRAINT Treatments_pk PRIMARY KEY (id);
+ALTER TABLE treatments ADD CONSTRAINT treatments_pk PRIMARY KEY (id);
 
-CREATE TABLE Clients (
+CREATE TABLE clients (
                          id              BIGSERIAL NOT NULL,
-                         name            VARCHAR(30) not null unique,
-                         First_Name      VARCHAR(30),
-                         Last_Name       VARCHAR(30),
-                         Phone_Number    INT,
-                         Email_Address   VARCHAR(100),
-                         Allergies       VARCHAR(150),
-                         Targets         VARCHAR(150)
+                         first_name      VARCHAR(30),
+                         last_name       VARCHAR(30),
+                         phone_number    INT,
+                         email_address   VARCHAR(100),
+                         allergies       VARCHAR(150),
+                         targets         VARCHAR(150)
 
 );
-ALTER TABLE Clients ADD CONSTRAINT clients_pk PRIMARY KEY ( id );
+ALTER TABLE clients ADD CONSTRAINT clients_pk PRIMARY KEY ( id );
 
-CREATE TABLE Appointments (
+CREATE TABLE appointments (
                               id             BIGSERIAL NOT NULL,
-                              Client_ID    BIGINT,
-                              Date         DATE,
-                              Time         TIME,
-                              Treatment    BIGINT
+                              client_id    BIGINT,
+                              date         DATE,
+                              time         TIME,
+                              treatment    BIGINT
 );
-ALTER TABLE Appointments ADD CONSTRAINT Appointments_pk PRIMARY KEY ( id );
+ALTER TABLE appointments ADD CONSTRAINT appointments_pk PRIMARY KEY ( id );
 
-ALTER TABLE Appointments
-    ADD CONSTRAINT appointments_clients_fk FOREIGN KEY ( Client_ID )
-        REFERENCES Clients ( id );
+ALTER TABLE appointments
+    ADD CONSTRAINT appointments_clients_fk FOREIGN KEY ( client_id )
+        REFERENCES clients ( id );
 
-ALTER TABLE Appointments
-    ADD CONSTRAINT appointments_treatments_fk FOREIGN KEY ( Treatment )
-        REFERENCES Treatments ( id );
+ALTER TABLE appointments
+    ADD CONSTRAINT appointments_treatments_fk FOREIGN KEY ( treatment )
+        REFERENCES treatments ( id );

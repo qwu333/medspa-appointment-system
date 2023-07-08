@@ -17,6 +17,12 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao{
     static final String DB_URL = "jdbc:postgresql://localhost:5431/medspa";
     static final String USER = "Amy";
     static final String PASS = "Awu79613";
+
+    @Override
+    public void save(Appointments appointments) {
+
+    }
+
     @Override
     public List<Appointments> getAppointments(){
         List<Appointments> appointments = new ArrayList<>();

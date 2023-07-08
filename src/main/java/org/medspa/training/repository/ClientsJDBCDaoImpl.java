@@ -18,6 +18,11 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
     static final String PASS = "Awu79613";
 
     @Override
+    public void save(Clients clients) {
+
+    }
+
+    @Override
     public List<Clients> getClients() {
         List<Clients> clients = new ArrayList<Clients>();
         Logger logger = LoggerFactory.getLogger(ClientsJDBCDaoImpl.class);
@@ -79,5 +84,15 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
         }
         logger.info("finish getClients, %s", clients);
         return clients;
+    }
+
+    @Override
+    public Clients getById(Long Id) {
+        return null;
+    }
+
+    @Override
+    public void delete(Clients clients) {
+
     }
 }

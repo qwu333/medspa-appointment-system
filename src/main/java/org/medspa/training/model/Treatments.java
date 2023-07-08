@@ -1,8 +1,10 @@
 package org.medspa.training.model;
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Currency;
 
 @Entity
-@Table(name = "Treatments")
+@Table(name = "treatments")
 public class Treatments {
     public Treatments(){}
 
@@ -11,22 +13,22 @@ public class Treatments {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "Treatment_Name")
+    @Column(name = "treatment_name")
     private String name;
 
-    @Column(name = "Treatment_Cost")
-    private float cost;
+    @Column(name = "treatment_cost")
+    private BigDecimal cost;
 
-    @Column(name = "Treatment_Price")
-    private float price;
+    @Column(name = "treatment_price")
+    private BigDecimal price;
 
-    @Column(name = "Treatment_Length")
+    @Column(name = "treatment_length")
     private int length;
 
-    @Column(name = "Treatment_Target")
+    @Column(name = "treatment_target")
     private String target;
 
-    @Column(name = "Nurses")
+    @Column(name = "nurses")
     private String nurses;
 
 
@@ -36,10 +38,10 @@ public class Treatments {
     public void setName(String name){
         this.name = name;
     }
-    public void setCost(float cost){
+    public void setCost(BigDecimal cost){
         this.cost = cost;
     }
-    public void setPrice(float price){
+    public void setPrice(BigDecimal price){
         this.price = price;
     }
     public void setLength(int length){

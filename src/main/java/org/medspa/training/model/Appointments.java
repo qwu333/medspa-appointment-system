@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 @Entity
-@Table(name = "Appointments")
+@Table(name = "appointments")
 public class Appointments {
     public Appointments(){}
 
@@ -14,16 +14,16 @@ public class Appointments {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "Client_ID")
+    @Column(name = "client_id")
     private long clientId;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private Date date;
 
-    @Column(name = "Time")
+    @Column(name = "time")
     private Time time;
 
-    @Column(name = "Treatment")
+    @Column(name = "treatment")
     private long treatment;
 
     public void setId(long id){

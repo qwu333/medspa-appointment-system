@@ -2,7 +2,7 @@ package org.medspa.training.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Clients")
+@Table(name = "clients")
 public class Clients {
     public Clients(){}
 
@@ -11,22 +11,22 @@ public class Clients {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "First_Name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "Last_Name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "Phone_Number")
+    @Column(name = "phone_number")
     private int phoneNumber;
 
-    @Column(name = "Email_Address")
+    @Column(name = "email_address")
     private String emailAddress;
 
-    @Column(name = "Allergies")
+    @Column(name = "allergies")
     private String allergies;
 
-    @Column(name = "Targets")
+    @Column(name = "targets")
     private String targets;
 
 

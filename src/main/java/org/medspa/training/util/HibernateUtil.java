@@ -25,7 +25,7 @@ public class HibernateUtil {
         logger.info("start getSessionFactory");
         if(sessionFactory == null) {
            try {
-                String[] modelPackages = {"org.medspa.training.model"};
+               String[] modelPackages = {"org.medspa.training.model"};
                String dbDriver = System.getProperty("database.driver");
                String dbDialect = System.getProperty("database.dialect");
                String dbUrl = System.getProperty("database.url");
@@ -58,11 +58,11 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-    public static void main(String[] args){
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        logger.info("success generate sf, {}", sf.hashCode());
-        Session s = sf.openSession();
-        logger.info("session connected to db");
-        s.close();
-    }
+//    public static void main(String[] args){
+//        SessionFactory sf = HibernateUtil.getSessionFactory();
+//        logger.info("success generate sf, {}", sf.hashCode());
+//        Session s = sf.openSession();
+//        logger.info("session connected to db");
+//        s.close();
+//    }
 }

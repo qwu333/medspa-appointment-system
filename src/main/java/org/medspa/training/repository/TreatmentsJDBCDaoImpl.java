@@ -3,6 +3,7 @@ import org.medspa.training.model.Treatments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -12,10 +13,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
     static final String DB_URL = "jdbc:postgresql://localhost:5431/medspa";
     static final String USER = "Amy";
     static final String PASS = "Awu79613";
+
+
+    @Override
+    public void save(Treatments treatments) {
+
+    }
 
     @Override
     public List<Treatments> getTreatments() {
@@ -33,9 +41,9 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
            conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
            //3. execute query
-           stmt = conn.createStatement();
            String sql;
            sql = "SELECT * FROM Treatments";
+           stmt = conn.createStatement();
            rs = stmt.executeQuery(sql);
            logger.info("connected to DB successfully and executed query");
 
@@ -43,8 +51,8 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
            while(rs.next()) {
                long id = rs.getLong("id");
                String name = rs.getString("name");
-               float cost = rs.getFloat("cost");
-               float price = rs.getFloat("price");
+               BigDecimal cost = rs.getBigDecimal("cost");
+               BigDecimal price = rs.getBigDecimal("price");
                int length = rs.getInt("length");
                String target = rs.getString("target");
                String nurses = rs.getString("nurses");
@@ -74,5 +82,15 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
        }
        logger.info("successful data extraction to Treatments");
        return treatments;
+    }
+
+    @Override
+    public Treatments getByName(String name) {
+        return null;
+    }
+
+    @Override
+    public void delete(Treatments treatments) {
+
     }
 }

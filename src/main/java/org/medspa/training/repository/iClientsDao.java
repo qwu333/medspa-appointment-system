@@ -4,5 +4,15 @@ import java.util.List;
 
 
 public interface iClientsDao {
-    public List<Clients> getClients();
+    //get/save
+    void save(Clients clients);
+
+    //retrieve
+     List<Clients> getClients();
+
+    //update =retrieve + save
+    Clients getById(Long Id);
+
+    //delete
+    void delete(Clients clients);
 }
