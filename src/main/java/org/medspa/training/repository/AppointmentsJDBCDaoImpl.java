@@ -80,6 +80,16 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao{
         return appointments;
     }
 
+    @Override
+    public Appointments getByClient(long clientId) {
+        return null;
+    }
+
+
+    @Override
+    public void delete(Appointments appointments) {
+
+    }
 
 
 }

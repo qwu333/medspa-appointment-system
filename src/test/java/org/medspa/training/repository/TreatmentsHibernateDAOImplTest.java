@@ -31,10 +31,10 @@ public class TreatmentsHibernateDAOImplTest {
 
     }
 
-    @After
-    public void tearDown() {
-        treatmentsHibernateDAO.delete(t1);
-    }
+  //  @After
+ //   public void tearDown() {
+ //       treatmentsHibernateDAO.delete(t1);
+  //  }
 
     @Test
     public void getTreatmentsTest() {

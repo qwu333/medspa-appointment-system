@@ -29,7 +29,7 @@ public class Appointments {
     public void setId(long id){
         this.id = id;
     }
-    public void setClientId(long id){
+    public void setClientId(long clientId){
         this.clientId = clientId;
     }
     public void setDate(Date date){
@@ -41,5 +41,6 @@ public class Appointments {
     public void setTreatment(long treatment){
         this.treatment = treatment;
     }
+
 
 }

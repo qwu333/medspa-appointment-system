@@ -87,9 +87,10 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
     }
 
     @Override
-    public Clients getById(Long Id) {
+    public Clients getById(long Id) {
         return null;
     }
+
 
     @Override
     public void delete(Clients clients) {

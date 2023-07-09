@@ -9,4 +9,8 @@ public interface iAppointmentsDao {
 
     //retrieve
     List<Appointments> getAppointments();
+
+    Appointments getByClient(long clientId);
+
+    void delete(Appointments appointments);
 }

@@ -30,9 +30,9 @@ public class ClientsHibernateDAOImplTest {
     }
 
     @After
-    public void tearDown(){
-      clientsHibernateDAO.delete(c1);
-  }
+    //public void tearDown(){
+    //  clientsHibernateDAO.delete(c1);
+            //}
 
     @Test
     public void getClientsTest(){
