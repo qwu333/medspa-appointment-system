@@ -1,5 +1,7 @@
 package org.medspa.training.model;
 import javax.persistence.*;
+import javax.persistence.ManyToOne;
+
 
 import java.sql.Date;
 import java.sql.Time;
@@ -8,14 +10,15 @@ import java.sql.Time;
 @Table(name = "appointments")
 public class Appointments {
     public Appointments(){}
+    public Appointments(Date date, Time time){
+        this.date = date;
+        this.time = time;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-
-    @Column(name = "client_id")
-    private long clientId;
 
     @Column(name = "date")
     private Date date;
@@ -23,24 +26,48 @@ public class Appointments {
     @Column(name = "time")
     private Time time;
 
-    @Column(name = "treatment")
-    private long treatment;
+    @ManyToOne
+    @JoinColumn(name = "treatment")
+    private Treatments treatment;
+
+    @ManyToOne
+    @JoinColumn(name = "client")
+    private Clients client;
 
     public void setId(long id){
         this.id = id;
     }
-    public void setClientId(long clientId){
-        this.clientId = clientId;
+
+    public long getId() {
+        return id;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
     public void setDate(Date date){
         this.date = date;
     }
     public void setTime(Time time){
         this.time = time;
     }
-    public void setTreatment(long treatment){
+
+    public void setClient(Clients client) {
+        this.client = client;
+    }
+    public void setTreatment(Treatments treatment){
         this.treatment = treatment;
     }
 
-
+    public Clients getClient(long client) {
+        return this.client;
+    }
+    public Treatments getTreatment(long treatment){
+        return this.treatment;
+    }
 }

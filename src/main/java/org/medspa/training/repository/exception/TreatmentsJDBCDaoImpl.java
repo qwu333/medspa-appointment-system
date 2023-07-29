@@ -1,4 +1,4 @@
-package org.medspa.training.repository;
+package org.medspa.training.repository.exception;
 import org.medspa.training.model.Treatments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
+public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
     static final String DB_URL = "jdbc:postgresql://localhost:5431/medspa";
     static final String USER = "Amy";
     static final String PASS = "Awu79613";
@@ -50,7 +50,7 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
            //4. data extraction
            while(rs.next()) {
                long id = rs.getLong("id");
-               String name = rs.getString("name");
+               String treatmentName = rs.getString("treatmentName");
                BigDecimal cost = rs.getBigDecimal("cost");
                BigDecimal price = rs.getBigDecimal("price");
                int length = rs.getInt("length");
@@ -59,7 +59,7 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
 
                Treatments treatment = new Treatments();
                treatment.setId(id);
-               treatment.setName(name);
+               treatment.setTreatmentName(treatmentName);
                treatment.setCost(cost);
                treatment.setPrice(price);
                treatment.setLength(length);
@@ -85,12 +85,19 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao{
     }
 
     @Override
-    public Treatments getByName(String name) {
+    public Treatments getByTreatmentName(String treatmentName) {
         return null;
     }
+
+
 
     @Override
     public void delete(Treatments treatments) {
 
+    }
+
+    @Override
+    public Treatments getTreatmentsEagerBy(Long id) {
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package org.medspa.training.repository;
+package org.medspa.training.repository.exception;
 import org.medspa.training.model.Appointments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +11,11 @@ import java.sql.DriverManager;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class AppointmentsJDBCDaoImpl implements iAppointmentsDao{
+public class AppointmentsJDBCDaoImpl implements iAppointmentsDao {
     static final String DB_URL = "jdbc:postgresql://localhost:5431/medspa";
     static final String USER = "Amy";
     static final String PASS = "Awu79613";
@@ -50,7 +52,7 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao{
 
             while(rs.next()){
                 long id = rs.getLong("id");
-                long clientId = rs.getLong("clientId");
+                long client = rs.getLong("client");
                 Date date = rs.getDate("date");
                 Time time = rs.getTime("time");
                 long treatment = rs.getLong("treatment");
@@ -58,10 +60,10 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao{
 
                 Appointments appointment = new Appointments();
                 appointment.setId(id);
-                appointment.setClientId(clientId);
+                appointment.getClient(client);
                 appointment.setDate(date);
                 appointment.setTime(time);
-                appointment.setTreatment(treatment);
+                appointment.getTreatment(treatment);
                 appointments.add(appointment);
 
             }
@@ -81,7 +83,7 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao{
     }
 
     @Override
-    public Appointments getByClient(long clientId) {
+    public Appointments getByDate(Date date) {
         return null;
     }
 

@@ -1,4 +1,4 @@
-package org.medspa.training.repository;
+package org.medspa.training.repository.exception;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientsHibernateDAOImpl implements iClientsDao{
+public class ClientsHibernateDAOImpl implements iClientsDao {
     //logger
     Logger logger = LoggerFactory.getLogger(ClientsHibernateDAOImpl.class);
 
@@ -88,6 +88,23 @@ public class ClientsHibernateDAOImpl implements iClientsDao{
                 transaction.rollback();
             }
             logger.error("unable to delete Clients or close session", e);
+        }
+    }
+
+    @Override
+    public Clients getClientsEagerBy(Long id) {
+        String hql = "FROM Clients d LEFT JOIN FETCH d.appointments where d.id = :Id";
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            Query<Clients> query = session.createQuery(hql);
+            query.setParameter("Id",id);
+            Clients result = query.uniqueResult();
+            session.close();
+            return result;
+        }catch(HibernateException e){
+            logger.error("failed to retrieve data record", e);
+            session.close();
+            return null;
         }
     }
 

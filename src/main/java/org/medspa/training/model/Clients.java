@@ -1,5 +1,9 @@
 package org.medspa.training.model;
 import javax.persistence.*;
+import javax.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "clients")
@@ -18,7 +22,7 @@ public class Clients {
     private String lastName;
 
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "email_address")
     private String emailAddress;
@@ -29,6 +33,8 @@ public class Clients {
     @Column(name = "targets")
     private String targets;
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Appointments> appointments;
 
 
     public void setId(long id){
@@ -43,7 +49,7 @@ public class Clients {
         this.lastName = lastName;
     }
 
-    public void setPhoneNumber (int phoneNumber){
+    public void setPhoneNumber (String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
 
@@ -59,7 +65,38 @@ public class Clients {
         this.targets = targets;
     }
 
+    public long getId() {
+        return id;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public String getTargets() {
+        return targets;
+    }
+
+    public Set<Appointments> getAppointments() {
+        return appointments;
+    }
+}
 
 
 

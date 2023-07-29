@@ -3,11 +3,13 @@ package org.medspa.training;
 import org.medspa.training.model.Appointments;
 import org.medspa.training.model.Treatments;
 import org.medspa.training.model.Clients;
-import org.medspa.training.repository.AppointmentsJDBCDaoImpl;
-import org.medspa.training.repository.ClientsJDBCDaoImpl;
-import org.medspa.training.repository.TreatmentsJDBCDaoImpl;
+import org.medspa.training.repository.exception.AppointmentsJDBCDaoImpl;
+import org.medspa.training.repository.exception.ClientsJDBCDaoImpl;
+import org.medspa.training.repository.exception.TreatmentsJDBCDaoImpl;
 
 import java.util.List;
+import java.util.Set;
+
 /**
  * Hello world!
  *

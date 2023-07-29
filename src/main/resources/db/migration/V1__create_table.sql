@@ -13,17 +13,19 @@ CREATE TABLE clients (
                          id              BIGSERIAL NOT NULL,
                          first_name      VARCHAR(30),
                          last_name       VARCHAR(30),
-                         phone_number    INT,
+                         phone_number    VARCHAR(10),
                          email_address   VARCHAR(100),
                          allergies       VARCHAR(150),
                          targets         VARCHAR(150)
 
 );
 ALTER TABLE clients ADD CONSTRAINT clients_pk PRIMARY KEY ( id );
+ALTER TABLE clients ADD CONSTRAINT check_min_len CHECK (length(phone_number) >= 10);
+ALTER TABLE clients ADD CONSTRAINT digit_constraint CHECK (phone_number NOT LIKE '%[^0-9]%');
 
 CREATE TABLE appointments (
                               id             BIGSERIAL NOT NULL,
-                              client_id    BIGINT,
+                              client    BIGINT,
                               date         DATE,
                               time         TIME,
                               treatment    BIGINT
@@ -31,7 +33,7 @@ CREATE TABLE appointments (
 ALTER TABLE appointments ADD CONSTRAINT appointments_pk PRIMARY KEY ( id );
 
 ALTER TABLE appointments
-    ADD CONSTRAINT appointments_clients_fk FOREIGN KEY ( client_id )
+    ADD CONSTRAINT appointments_clients_fk FOREIGN KEY ( client )
         REFERENCES clients ( id );
 
 ALTER TABLE appointments

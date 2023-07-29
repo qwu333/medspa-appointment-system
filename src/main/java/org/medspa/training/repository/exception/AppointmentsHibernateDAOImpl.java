@@ -1,4 +1,4 @@
-package org.medspa.training.repository;
+package org.medspa.training.repository.exception;
 import org.medspa.training.model.Appointments;
 import org.medspa.training.util.HibernateUtil;
 
@@ -10,11 +10,10 @@ import org.hibernate.query.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.sql.Date;
+import java.util.*;
 
-import java.util.List;
-import java.util.ArrayList;
-
-public class AppointmentsHibernateDAOImpl implements iAppointmentsDao{
+public class AppointmentsHibernateDAOImpl implements iAppointmentsDao {
     //logger
     Logger logger = LoggerFactory.getLogger(AppointmentsHibernateDAOImpl.class);
 
@@ -63,9 +62,10 @@ public class AppointmentsHibernateDAOImpl implements iAppointmentsDao{
     }
 
     @Override
-    public Appointments getByClient(long clientId) {
+    public Appointments getByDate(Date date) {
         return null;
     }
+
 
     @Override
     public void delete(Appointments appointments) {

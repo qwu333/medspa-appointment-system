@@ -2,6 +2,10 @@ package org.medspa.training.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Currency;
+import javax.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "treatments")
@@ -14,7 +18,7 @@ public class Treatments {
     private long id;
 
     @Column(name = "treatment_name")
-    private String name;
+    private String treatmentName;
 
     @Column(name = "treatment_cost")
     private BigDecimal cost;
@@ -31,12 +35,15 @@ public class Treatments {
     @Column(name = "nurses")
     private String nurses;
 
+    @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Appointments> appointments;
+
 
     public void setId(long id){
         this.id = id;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setTreatmentName(String treatmentName){
+        this.treatmentName = treatmentName;
     }
     public void setCost(BigDecimal cost){
         this.cost = cost;
@@ -54,5 +61,35 @@ public class Treatments {
         this.nurses = nurses;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public String getTreatmentName() {
+        return treatmentName;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public String getNurses() {
+        return nurses;
+    }
+
+    public Set<Appointments> getAppointments() {
+        return appointments;
+    }
 }

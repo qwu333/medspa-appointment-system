@@ -1,4 +1,4 @@
-package org.medspa.training.repository;
+package org.medspa.training.repository.exception;
 import  org.medspa.training.model.Clients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
                 long id = rs.getLong("id");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                int phoneNumber = rs.getInt("phoneNumber");
+                String phoneNumber = rs.getString("phoneNumber");
                 String emailAddress = rs.getString("emailAddress");
                 String allergies = rs.getString("allergies");
                 String targets = rs.getString("targets");
@@ -95,5 +95,10 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
     @Override
     public void delete(Clients clients) {
 
+    }
+
+    @Override
+    public Clients getClientsEagerBy(Long id) {
+        return null;
     }
 }

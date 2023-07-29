@@ -1,4 +1,4 @@
-package org.medspa.training.repository;
+package org.medspa.training.repository.exception;
 
 import org.medspa.training.model.Treatments;
 
@@ -11,8 +11,10 @@ public interface iTreatmentsDao {
     List<Treatments> getTreatments();// retrieve
 
     //update = get + save
-    Treatments getByName(String name);
+    Treatments getByTreatmentName(String treatmentName);
 
     //delete
     void delete(Treatments treatments);
+
+    Treatments getTreatmentsEagerBy(Long id);
 }
