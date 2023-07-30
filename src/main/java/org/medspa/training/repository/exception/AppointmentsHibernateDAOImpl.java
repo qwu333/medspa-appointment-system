@@ -45,16 +45,18 @@ public class AppointmentsHibernateDAOImpl implements iAppointmentsDao {
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        try{
-            Session session = sessionFactory.openSession();
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
 
             String hql = "FROM Appointments";
             Query<Appointments> query = session.createQuery((hql));
             appointments = query.list();
 
             session.close();
-        }catch(HibernateException e){
+        } catch (HibernateException e) {
             logger.error("Connection or execution of query failed", e);
+            session.close();
         }
 
         logger.info("get Appointments", appointments);

@@ -12,6 +12,16 @@ import java.util.Set;
 public class Treatments {
     public Treatments(){}
 
+    public Treatments(long id, String treatmentName, BigDecimal cost, BigDecimal price, int length, String target, String nurses){
+        this.id = id;
+        this.treatmentName = treatmentName;
+        this.cost = cost;
+        this.price = price;
+        this.length = length;
+        this.target = target;
+        this.nurses = nurses;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

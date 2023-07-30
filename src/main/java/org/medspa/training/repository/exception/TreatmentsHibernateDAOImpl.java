@@ -54,8 +54,9 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 
+        Session session = null;
         try {
-            Session session = sessionFactory.openSession();
+            session = sessionFactory.openSession();
 
             //execute query
             String hql = "FROM Treatments";
@@ -69,6 +70,7 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
 
         } catch (HibernateException e) {
             logger.error("Open session exception of lose session exception", e);
+            session.close();
 
         }
         logger.info("Get treatments {}", treatments);

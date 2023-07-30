@@ -9,6 +9,15 @@ import java.util.Set;
 @Table(name = "clients")
 public class Clients {
     public Clients(){}
+    public Clients(long id, String firstName, String lastName, String phoneNumber, String emailAddress, String allergies,String targets){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.allergies = allergies;
+        this.targets = targets;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

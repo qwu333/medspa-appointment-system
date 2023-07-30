@@ -46,18 +46,20 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
         //connection to DB
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        try{
-            Session session = sessionFactory.openSession();
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
             //execute query
             String hql = "FROM Clients";
             Query<Clients> query = session.createQuery(hql);
             clients = query.list();
             // close
             session.close();
-        }catch(HibernateException e){
-            logger.error("Connection or execution of query failed",e);
+        } catch (HibernateException e) {
+            logger.error("Connection or execution of query failed", e);
+            session.close();
         }
-        logger.info("get Clients {}",clients);
+        logger.info("get Clients {}", clients);
         return clients;
 
     }
