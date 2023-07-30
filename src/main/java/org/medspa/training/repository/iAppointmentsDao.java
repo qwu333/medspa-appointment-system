@@ -1,10 +1,9 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 
 import org.medspa.training.model.Appointments;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 public interface iAppointmentsDao {
     //create/save
@@ -15,5 +14,5 @@ public interface iAppointmentsDao {
 
     Appointments getByDate(Date date);
 
-    void delete(Appointments appointments);
+    boolean delete(Appointments appointments);
 }

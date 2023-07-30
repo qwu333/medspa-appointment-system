@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 import org.medspa.training.model.Appointments;
 import org.medspa.training.util.HibernateUtil;
 
@@ -10,9 +10,12 @@ import org.hibernate.query.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Date;
 import java.util.*;
 
+@Repository
 public class AppointmentsHibernateDAOImpl implements iAppointmentsDao {
     //logger
     Logger logger = LoggerFactory.getLogger(AppointmentsHibernateDAOImpl.class);
@@ -56,7 +59,7 @@ public class AppointmentsHibernateDAOImpl implements iAppointmentsDao {
             session.close();
         } catch (HibernateException e) {
             logger.error("Connection or execution of query failed", e);
-            session.close();
+            throw e;
         }
 
         logger.info("get Appointments", appointments);
@@ -70,7 +73,7 @@ public class AppointmentsHibernateDAOImpl implements iAppointmentsDao {
 
 
     @Override
-    public void delete(Appointments appointments) {
+    public boolean delete(Appointments appointments) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
         try{
@@ -89,5 +92,6 @@ public class AppointmentsHibernateDAOImpl implements iAppointmentsDao {
             }
             logger.error("Unable to delete Appointments or close session", e);
         }
+        return false;
     }
 }

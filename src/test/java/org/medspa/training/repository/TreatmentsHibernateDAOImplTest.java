@@ -1,12 +1,17 @@
 package org.medspa.training.repository;
 
 import org.junit.After;
+import org.junit.runner.RunWith;
+import org.medspa.training.ApplicationBootstrap;
 import org.medspa.training.model.Appointments;
 import org.medspa.training.model.Clients;
 import org.medspa.training.model.Treatments;
 import org.junit.Before;
 import org.junit.Test;
 import org.medspa.training.repository.exception.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -14,10 +19,17 @@ import java.sql.Time;
 
 import static junit.framework.Assert.*;
 
-
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ApplicationBootstrap.class)
 public class TreatmentsHibernateDAOImplTest {
+
+    @Autowired
     private iTreatmentsDao treatmentsHibernateDAO;
+
+    @Autowired
     private iAppointmentsDao appointmentsHibernateDAO;
+
+    @Autowired
     private iClientsDao clientsHibernateDAO;
     private Treatments t1;
     private Appointments a1;
@@ -26,7 +38,8 @@ public class TreatmentsHibernateDAOImplTest {
 
     @Before
     public void setup() {
-        treatmentsHibernateDAO = new TreatmentsHibernateDAOImpl();
+       // treatmentsHibernateDAO = new TreatmentsHibernateDAOImpl();
+        // doesn't need new method because of Spring
         t1 = new Treatments();
         t1.setId(1);
         t1.setTreatmentName("m22 ipl");
@@ -37,7 +50,7 @@ public class TreatmentsHibernateDAOImplTest {
         t1.setNurses("lora, stanley, timo");
         treatmentsHibernateDAO.save(t1);
 
-        clientsHibernateDAO = new ClientsHibernateDAOImpl();
+       // clientsHibernateDAO = new ClientsHibernateDAOImpl();
         c1 = new Clients();
         c1.setTargets("pimpo");
         c1.setAllergies("na");
@@ -47,7 +60,7 @@ public class TreatmentsHibernateDAOImplTest {
         c1.setFirstName("jj");
         clientsHibernateDAO.save(c1);
 
-        appointmentsHibernateDAO = new AppointmentsHibernateDAOImpl();
+        //appointmentsHibernateDAO = new AppointmentsHibernateDAOImpl();
         a1 = new Appointments();
         a1.setDate(new Date((2023-1900),(12-1),23));
         a1.setTime(new Time(16,30,00));

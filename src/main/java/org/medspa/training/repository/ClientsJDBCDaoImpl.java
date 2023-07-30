@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 import  org.medspa.training.model.Clients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,8 +93,9 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
 
 
     @Override
-    public void delete(Clients clients) {
+    public boolean delete(Clients clients) {
 
+        return false;
     }
 
     @Override

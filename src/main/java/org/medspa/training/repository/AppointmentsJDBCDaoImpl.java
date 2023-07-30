@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 import org.medspa.training.model.Appointments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +11,7 @@ import java.sql.DriverManager;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AppointmentsJDBCDaoImpl implements iAppointmentsDao {
     static final String DB_URL = "jdbc:postgresql://localhost:5431/medspa";
@@ -89,8 +87,9 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao {
 
 
     @Override
-    public void delete(Appointments appointments) {
+    public boolean delete(Appointments appointments) {
 
+        return false;
     }
 
 

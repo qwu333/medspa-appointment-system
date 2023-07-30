@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.medspa.training.model.Treatments;
-import org.medspa.training.repository.exception.TreatmentsHibernateDAOImpl;
-import org.medspa.training.repository.exception.iTreatmentsDao;
 import org.medspa.training.util.HibernateUtil;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;

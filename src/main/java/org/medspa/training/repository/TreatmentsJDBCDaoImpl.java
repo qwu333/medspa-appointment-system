@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 import org.medspa.training.model.Treatments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,8 +92,9 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
 
 
     @Override
-    public void delete(Treatments treatments) {
+    public boolean delete(Treatments treatments) {
 
+        return false;
     }
 
     @Override

@@ -2,7 +2,6 @@ package org.medspa.training.repository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.medspa.training.repository.exception.TreatmentsJDBCDaoImpl;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;

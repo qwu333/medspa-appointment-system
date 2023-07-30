@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -6,17 +6,17 @@ import org.hibernate.SessionFactory;
 
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.medspa.training.model.Clients;
 import org.medspa.training.model.Treatments;
 import org.medspa.training.util.HibernateUtil;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-
+@Repository
 public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
     Logger logger = LoggerFactory.getLogger(TreatmentsHibernateDAOImpl.class);
 
@@ -70,7 +70,7 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
 
         } catch (HibernateException e) {
             logger.error("Open session exception of lose session exception", e);
-            session.close();
+            throw e;
 
         }
         logger.info("Get treatments {}", treatments);
@@ -86,7 +86,7 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
 
 
     @Override
-    public void delete(Treatments treatments) {
+    public boolean delete(Treatments treatments) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
 
@@ -106,6 +106,7 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
             }
             logger.error("Unable to save or unable to close DELETE", e);
         }
+        return false;
     }
 
     public Treatments getTreatmentsEagerBy(Long id) {

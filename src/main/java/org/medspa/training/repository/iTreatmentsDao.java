@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 
 import org.medspa.training.model.Treatments;
 
@@ -14,7 +14,7 @@ public interface iTreatmentsDao {
     Treatments getByTreatmentName(String treatmentName);
 
     //delete
-    void delete(Treatments treatments);
+    boolean delete(Treatments treatments);
 
     Treatments getTreatmentsEagerBy(Long id);
 }

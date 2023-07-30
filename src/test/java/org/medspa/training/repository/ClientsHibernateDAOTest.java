@@ -8,17 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.medspa.training.model.Clients;
-import org.medspa.training.model.Treatments;
-import org.medspa.training.repository.exception.ClientsHibernateDAOImpl;
-import org.medspa.training.repository.exception.TreatmentsHibernateDAOImpl;
-import org.medspa.training.repository.exception.iClientsDao;
-import org.medspa.training.repository.exception.iTreatmentsDao;
 import org.medspa.training.util.HibernateUtil;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;

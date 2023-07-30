@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 import org.medspa.training.model.Clients;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface iClientsDao {
 
 
     //delete
-    void delete(Clients clients);
+    boolean delete(Clients clients);
 
     Clients getClientsEagerBy(Long id);
 }

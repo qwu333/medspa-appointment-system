@@ -1,4 +1,4 @@
-package org.medspa.training.repository.exception;
+package org.medspa.training.repository;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -9,10 +9,12 @@ import org.medspa.training.model.Clients;
 import org.medspa.training.util.HibernateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ClientsHibernateDAOImpl implements iClientsDao {
     //logger
     Logger logger = LoggerFactory.getLogger(ClientsHibernateDAOImpl.class);
@@ -57,7 +59,7 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
             session.close();
         } catch (HibernateException e) {
             logger.error("Connection or execution of query failed", e);
-            session.close();
+            throw e;
         }
         logger.info("get Clients {}", clients);
         return clients;
@@ -72,7 +74,7 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
 
 
     @Override
-    public void delete(Clients clients) {
+    public boolean delete(Clients clients) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
 
@@ -91,6 +93,7 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
             }
             logger.error("unable to delete Clients or close session", e);
         }
+        return false;
     }
 
     @Override
