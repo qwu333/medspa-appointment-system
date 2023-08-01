@@ -8,7 +8,7 @@ import org.medspa.training.model.Clients;
 import org.medspa.training.model.Treatments;
 import org.junit.Before;
 import org.junit.Test;
-import org.medspa.training.repository.exception.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;

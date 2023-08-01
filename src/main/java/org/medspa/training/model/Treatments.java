@@ -1,4 +1,6 @@
 package org.medspa.training.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -46,6 +48,7 @@ public class Treatments {
     private String nurses;
 
     @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Appointments> appointments;
 
 

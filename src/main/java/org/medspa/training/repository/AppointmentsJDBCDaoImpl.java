@@ -81,7 +81,7 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao {
     }
 
     @Override
-    public Appointments getByDate(Date date) {
+    public Appointments getById(Long id) {
         return null;
     }
 
@@ -91,6 +91,13 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao {
 
         return false;
     }
+
+    @Override
+    public Appointments update(Appointments appointments) {
+        return null;
+    }
+
+
 
 
 }

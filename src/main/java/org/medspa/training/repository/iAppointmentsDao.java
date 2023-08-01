@@ -12,7 +12,9 @@ public interface iAppointmentsDao {
     //retrieve
     List<Appointments> getAppointments();
 
-    Appointments getByDate(Date date);
+    Appointments getById(Long id);
 
     boolean delete(Appointments appointments);
+
+    Appointments update(Appointments appointments);
 }

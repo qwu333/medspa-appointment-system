@@ -16,5 +16,7 @@ public interface iTreatmentsDao {
     //delete
     boolean delete(Treatments treatments);
 
+    Treatments update(Treatments treatments);
+
     Treatments getTreatmentsEagerBy(Long id);
 }

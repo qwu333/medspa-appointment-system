@@ -22,8 +22,8 @@ public class ClientsService {
         return clientsDao.getClients();
     }
 
-    public Clients update(Clients client){
-        return clientsDao.getById(client.getId());
+    public Clients update(Clients clients){
+        return clientsDao.update(clients);
     }
 
     public boolean delete(Clients client){
@@ -33,4 +33,6 @@ public class ClientsService {
     public Clients getClientsEager(long id){
         return clientsDao.getClientsEagerBy(id);
     }
+
+    public Clients getBy(Long id) {return clientsDao.getById(id);}
 }

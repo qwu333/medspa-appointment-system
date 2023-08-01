@@ -6,9 +6,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.medspa.training.model.Clients;
+import org.medspa.training.model.Treatments;
 import org.medspa.training.util.HibernateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,13 +21,15 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
     //logger
     Logger logger = LoggerFactory.getLogger(ClientsHibernateDAOImpl.class);
 
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Override
     public void save(Clients clients) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
+        Session session = sessionFactory.openSession();
         try{
-            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(clients);
 
@@ -46,11 +50,11 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
         //prepare data model
         List<Clients> clients = new ArrayList<>();
         //connection to DB
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+       //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        Session session = null;
+        Session session = sessionFactory.openSession();
         try {
-            session = sessionFactory.openSession();
+
             //execute query
             String hql = "FROM Clients";
             Query<Clients> query = session.createQuery(hql);
@@ -67,19 +71,36 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
     }
 
     @Override
-    public Clients getById(long Id) {
-        return null;
+    public Clients getById(Long id) {
+        Session session = sessionFactory.openSession();
+        try {
+
+            //execute query
+            String hql = "FROM Clients c where id = :id";
+            Query<Clients> query = session.createQuery(hql);
+            query.setParameter("id", id );
+            Clients result = query.uniqueResult();
+            //close
+
+            session.close();
+            return result;
+
+        } catch (HibernateException e) {
+            logger.error("Open session exception of lose session exception", e);
+            session.close();
+            return null;
+
+        }
     }
 
 
 
     @Override
     public boolean delete(Clients clients) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
-
+        Session session = sessionFactory.openSession();
         try{
-            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
 
             session.delete(clients);
@@ -113,4 +134,26 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
         }
     }
 
-}
+    @Override
+    public Clients update(Clients clients) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            session.update(clients);
+            transaction.commit();
+            Clients c = getById(clients.getId());
+            session.close();
+            return c;
+        } catch (HibernateException e){
+            if(transaction !=null) {
+                transaction.rollback();
+            }
+            logger.error("failed to insert record" , e);
+            session.close();
+            return null;
+        }
+    }
+    }
+

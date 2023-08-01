@@ -11,8 +11,9 @@ public interface iClientsDao {
      List<Clients> getClients();
 
     //update =retrieve + save
-    Clients getById(long Id);
+    Clients getById(Long Id);
 
+    Clients update(Clients clients);
 
     //delete
     boolean delete(Clients clients);

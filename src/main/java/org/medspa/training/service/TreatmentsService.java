@@ -22,7 +22,7 @@ public class TreatmentsService {
     }
 
     public Treatments update(Treatments treatment){
-        return treatmentsDao.getByTreatmentName(treatment.getTreatmentName());
+        return treatmentsDao.update(treatment);
     }
 
     public boolean delete(Treatments treatment){
@@ -32,4 +32,9 @@ public class TreatmentsService {
     public Treatments getTreatmentsEager(long id){
         return treatmentsDao.getTreatmentsEagerBy(id);
     }
+
+    public Treatments getBy(String treatmentName) {return treatmentsDao.getByTreatmentName(treatmentName);
+    }
+
+
 }

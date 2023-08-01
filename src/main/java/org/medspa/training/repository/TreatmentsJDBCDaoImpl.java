@@ -98,6 +98,11 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
     }
 
     @Override
+    public Treatments update(Treatments treatments) {
+        return null;
+    }
+
+    @Override
     public Treatments getTreatmentsEagerBy(Long id) {
         return null;
     }

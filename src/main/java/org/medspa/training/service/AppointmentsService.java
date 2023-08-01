@@ -7,6 +7,7 @@ import org.medspa.training.repository.iClientsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -23,11 +24,15 @@ public class AppointmentsService {
     }
 
     public Appointments update(Appointments appointment){
-        return appointmentsDao.getByDate(appointment.getDate());
+        return appointmentsDao.update(appointment);
     }
 
     public boolean delete(Appointments appointment){
         return appointmentsDao.delete(appointment);
+    }
+
+    public Appointments getBy(Long id){
+        return appointmentsDao.getById(id);
     }
 
 }

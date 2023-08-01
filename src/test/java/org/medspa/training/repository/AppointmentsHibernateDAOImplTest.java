@@ -1,14 +1,13 @@
 package org.medspa.training.repository;
-import org.junit.runner.RunWith;
-import org.medspa.training.ApplicationBootstrap;
-import org.medspa.training.model.Appointments;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.medspa.training.ApplicationBootstrap;
+import org.medspa.training.model.Appointments;
 import org.medspa.training.model.Clients;
 import org.medspa.training.model.Treatments;
-import org.medspa.training.repository.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
