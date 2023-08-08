@@ -21,7 +21,6 @@ public class TreatmentsController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Treatments> getTreatments(){
-       // logger.info("This is Treatments Controller");
         List<Treatments> treatments = treatmentsService.getTreatments();
         return treatments;
     }

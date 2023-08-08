@@ -1,13 +1,9 @@
 package org.medspa.training.service;
 
 import org.medspa.training.model.Appointments;
-import org.medspa.training.model.Clients;
 import org.medspa.training.repository.iAppointmentsDao;
-import org.medspa.training.repository.iClientsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
 import java.util.List;
 
 @Service

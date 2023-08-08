@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.medspa.training.model.Appointments;
+import org.medspa.training.model.Clients;
+import org.medspa.training.model.Treatments;
 import org.medspa.training.util.HibernateUtil;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
@@ -44,7 +46,7 @@ public class AppointmentsHibernateDAOTest {
     @Test
     public void getAppointmentTest_happyPath(){
         //create a treatment object
-        Appointments appointment = new Appointments(new Date(123,11,9), new Time(16,22,00));
+        Appointments appointment = new Appointments(new Date(123,11,9), new Time(16,22,00), new Treatments(),new Clients());
         List<Appointments> result = List.of(appointment);
         //mock
         try(MockedStatic mockedStatic = mockStatic(HibernateUtil.class)){
@@ -62,7 +64,7 @@ public class AppointmentsHibernateDAOTest {
 
     @Test
     public void getAppointmentsTest_getHibernateException(){
-        Appointments appointment = new Appointments(new Date(123,11,9), new Time(16,22,00));
+        Appointments appointment = new Appointments(new Date(123,11,9), new Time(16,22,00), new Treatments(), new Clients());
         List<Appointments> result = List.of(appointment);
         //mock
         try(MockedStatic mockedStatic = mockStatic(HibernateUtil.class)){

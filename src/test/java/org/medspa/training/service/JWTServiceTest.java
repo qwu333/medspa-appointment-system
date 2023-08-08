@@ -19,7 +19,7 @@ public class JWTServiceTest {
 
     @Test
     public void generateTokenTest(){
-        User u = new User();
+        User u = new User(roles);
         u.setId(1);
         u.setName("Amy");
         String token = jwtService.generateToken(u);

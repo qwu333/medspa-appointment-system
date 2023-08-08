@@ -24,11 +24,9 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         long startTime = System.currentTimeMillis();
-      //  logger.info("this is logger filter preprocessing");
         HttpServletRequest req = (HttpServletRequest)servletRequest;
         String logInfo = logInfo(req);
         filterChain.doFilter(servletRequest, servletResponse);
-       // logger.info("This is logger filter post-processing");
         long endTime = System.currentTimeMillis();
         logger.info(logInfo.replace("responseTime", String.valueOf(System.currentTimeMillis()-startTime)));
     }
@@ -43,7 +41,7 @@ public class LogFilter implements Filter {
             if (word.toLowerCase().contains(excludedWord)) return true;
         }
         return false;
-    }
+    } 
 
     private String logInfo(HttpServletRequest req) {
         String formData = null;

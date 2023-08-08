@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 
 @Repository
@@ -27,7 +26,6 @@ public class UserDaoImpl implements iUserDao{
     public User getUserByEmail(String email) {
         return null;
     }
-
 
     @Override
     public User getUserById(Long id){
@@ -50,4 +48,5 @@ public class UserDaoImpl implements iUserDao{
             throw new Exception("can't find user record with email="+email + ", password="+password);
         }
     }
+    //log in by username
 }

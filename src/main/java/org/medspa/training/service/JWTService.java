@@ -23,12 +23,10 @@ public class JWTService {
     private Logger logger = LoggerFactory.getLogger(getClass());
     public String generateToken(User user){
 
-        //JWT signature algorithm using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         byte[] apiKeySecreteBytes = DatatypeConverter.parseBase64Binary(SECRETE_KEY);
         Key signingKey = new SecretKeySpec(apiKeySecreteBytes, signatureAlgorithm.getJcaName());
 
-        //claims = payload
         Claims claims = Jwts.claims();
         claims.setId(String.valueOf(user.getId()));
         claims.setSubject(user.getName());
@@ -36,10 +34,7 @@ public class JWTService {
         claims.setIssuer(ISSUER);
         claims.setExpiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME));
 
-        //set JWT claims
         JwtBuilder builder = Jwts.builder().setClaims(claims).signWith(signatureAlgorithm, signingKey);
-
-        //Builds the JWT and serializes it to a compact, URL-safe string
         String generateToken = builder.compact();
         return generateToken;
     }

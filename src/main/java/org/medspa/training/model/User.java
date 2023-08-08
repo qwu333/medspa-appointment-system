@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +15,7 @@ public class User {
     private String name;
     @Column(name = "password")
     private String password;
-    @Column(name = "secret_key")
+    @Column(name = "secrete_key")
     private String secretKey;
     @Column(name = "first_name")
     private String firstName;
@@ -26,6 +28,7 @@ public class User {
     @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     @JsonIgnore
     private List<Role> roles;
+
 
     public long getId() {
         return id;
@@ -81,5 +84,12 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(List<Role> roles){
+        this.roles =roles;
     }
 }

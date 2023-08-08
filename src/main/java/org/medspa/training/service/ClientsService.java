@@ -1,7 +1,6 @@
 package org.medspa.training.service;
 
 import org.medspa.training.model.Clients;
-import org.medspa.training.model.Treatments;
 import org.medspa.training.repository.iClientsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

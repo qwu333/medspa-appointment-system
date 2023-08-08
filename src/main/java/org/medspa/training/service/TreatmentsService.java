@@ -12,11 +12,9 @@ public class TreatmentsService {
 
     @Autowired
     private iTreatmentsDao treatmentsDao;
-
     public void save(Treatments treatment){
         treatmentsDao.save(treatment);
     }
-
     public List<Treatments> getTreatments(){
         return treatmentsDao.getTreatments();
     }
@@ -24,15 +22,12 @@ public class TreatmentsService {
     public Treatments update(Treatments treatment){
         return treatmentsDao.update(treatment);
     }
-
     public boolean delete(Treatments treatment){
         return treatmentsDao.delete(treatment);
     }
-
     public Treatments getTreatmentsEager(long id){
         return treatmentsDao.getTreatmentsEagerBy(id);
     }
-
     public Treatments getBy(String treatmentName) {return treatmentsDao.getByTreatmentName(treatmentName);
     }
 

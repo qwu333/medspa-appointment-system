@@ -26,7 +26,6 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
 
     @Override
     public void save(Treatments treatments) {
-       // SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try {
@@ -50,59 +49,37 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
     @Override
     public List<Treatments> getTreatments() {
 
-
-        //prepare data model
-        List<Treatments> treatments = new ArrayList<>();
-
-        // create connection
-        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-
-
+        List<Treatments> treatments;
         Session session = sessionFactory.openSession();
         try {
-
-            //execute query
             String hql = "FROM Treatments";
             Query<Treatments> query = session.createQuery(hql);
             treatments = query.list();
 
-            //close
-
             session.close();
-
-
         } catch (HibernateException e) {
             logger.error("Open session exception of lose session exception", e);
             throw e;
-
         }
         logger.info("Get treatments {}", treatments);
         return treatments;
-
-
     }
 
     @Override
     public Treatments getByTreatmentName(String treatmentName) {
-
         Session session = sessionFactory.openSession();
         try {
-
-            //execute query
             String hql = "FROM Treatments t where treatmentName = :treatmentName";
             Query<Treatments> query = session.createQuery(hql);
             query.setParameter("treatmentName", treatmentName );
             Treatments result = query.uniqueResult();
-            //close
 
             session.close();
             return result;
-
         } catch (HibernateException e) {
             logger.error("Open session exception of lose session exception", e);
             session.close();
             return null;
-
         }
 
     }
@@ -110,16 +87,11 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
 
     @Override
     public boolean delete(Treatments treatments) {
-       // SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
-
         Session session = sessionFactory.openSession();
         try {
-
             transaction = session.beginTransaction();
-
             session.delete(treatments);
-
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -136,7 +108,6 @@ public class TreatmentsHibernateDAOImpl implements iTreatmentsDao {
     public Treatments update(Treatments treatments){
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-
         try{
             transaction = session.beginTransaction();
             session.update(treatments);

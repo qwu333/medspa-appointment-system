@@ -2,11 +2,7 @@ package org.medspa.training.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Currency;
-import javax.persistence.ManyToMany;
-import java.util.HashSet;
-import java.util.List;
+import java.math.BigDecimal;;
 import java.util.Set;
 
 @Entity

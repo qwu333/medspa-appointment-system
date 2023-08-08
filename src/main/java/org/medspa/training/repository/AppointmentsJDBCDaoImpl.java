@@ -29,24 +29,19 @@ public class AppointmentsJDBCDaoImpl implements iAppointmentsDao {
         Logger logger = LoggerFactory.getLogger(AppointmentsJDBCDaoImpl.class);
         logger.debug("starting to getAppointments from DB");
 
-        //1. set data model
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try{
-            //1. open connection
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
             logger.info("connected to DB successfully");
 
-            //2.execute query
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * TABLE Appointments";
             rs = stmt.executeQuery(sql);
             logger.info("Query has been successfully executed");
-
-            //3.extract data
 
             while(rs.next()){
                 long id = rs.getLong("id");

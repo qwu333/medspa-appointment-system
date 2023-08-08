@@ -47,19 +47,16 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
 
     @Override
     public List<Clients> getClients() {
-        //prepare data model
-        List<Clients> clients = new ArrayList<>();
-        //connection to DB
-       //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+        List<Clients> clients;
 
         Session session = sessionFactory.openSession();
         try {
 
-            //execute query
             String hql = "FROM Clients";
             Query<Clients> query = session.createQuery(hql);
             clients = query.list();
-            // close
+
             session.close();
         } catch (HibernateException e) {
             logger.error("Connection or execution of query failed", e);
@@ -75,12 +72,10 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
         Session session = sessionFactory.openSession();
         try {
 
-            //execute query
             String hql = "FROM Clients c where id = :id";
             Query<Clients> query = session.createQuery(hql);
             query.setParameter("id", id );
             Clients result = query.uniqueResult();
-            //close
 
             session.close();
             return result;
@@ -97,7 +92,6 @@ public class ClientsHibernateDAOImpl implements iClientsDao {
 
     @Override
     public boolean delete(Clients clients) {
-        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try{

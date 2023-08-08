@@ -10,9 +10,11 @@ import java.sql.Time;
 @Table(name = "appointments")
 public class Appointments {
     public Appointments(){}
-    public Appointments(Date date, Time time){
+    public Appointments(Date date, Time time, Treatments treatment, Clients client){
         this.date = date;
         this.time = time;
+        this.treatment = treatment;
+        this.client =client;
     }
 
     @Id

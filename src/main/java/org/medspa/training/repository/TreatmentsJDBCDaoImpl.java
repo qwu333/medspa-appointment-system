@@ -22,7 +22,6 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
 
     @Override
     public void save(Treatments treatments) {
-
     }
 
     @Override
@@ -31,23 +30,18 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
         Logger logger = LoggerFactory.getLogger(TreatmentsJDBCDaoImpl.class);
         logger.debug("Started to getTreatments from Postgres to JDBC");
 
-        //1.set data model
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
 
        try{
-            //2. open up connection
            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-
-           //3. execute query
            String sql;
            sql = "SELECT * FROM Treatments";
            stmt = conn.createStatement();
            rs = stmt.executeQuery(sql);
            logger.info("connected to DB successfully and executed query");
 
-           //4. data extraction
            while(rs.next()) {
                long id = rs.getLong("id");
                String treatmentName = rs.getString("treatmentName");
@@ -66,7 +60,6 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
                treatment.setTarget(target);
                treatment.setNurses(nurses);
                treatments.add(treatment);
-
            }
 
         }catch (SQLException e){
@@ -89,11 +82,8 @@ public class TreatmentsJDBCDaoImpl implements iTreatmentsDao {
         return null;
     }
 
-
-
     @Override
     public boolean delete(Treatments treatments) {
-
         return false;
     }
 

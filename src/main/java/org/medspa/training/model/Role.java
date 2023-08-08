@@ -3,27 +3,29 @@ package org.medspa.training.model;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
 
     @Column(name = "name")
     private String name;
     @Column(name = "allowed_resource")
     private String allowedResource;
     @Column(name = "allowed_read")
-    private String allowedRead;
+    private Boolean allowedRead;
     @Column(name = "allowed_create")
-    private String allowedCreate;
+    private Boolean allowedCreate;
     @Column(name = "allowed_update")
-    private String allowedUpdate;
+    private Boolean allowedUpdate;
     @Column(name = "allowed_delete")
-    private String allowedDelete;
+    private Boolean allowedDelete;
+    @ManyToMany(mappedBy ="roles")
+    private List<User> users;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> user;
+
     public long getId() {
         return id;
     }
@@ -48,35 +50,40 @@ public class Role {
         this.allowedResource = allowedResource;
     }
 
-    public String getAllowedRead() {
+    public Boolean getAllowedRead() {
         return allowedRead;
     }
 
     public void setAllowedRead(String allowedRead) {
-        this.allowedRead = allowedRead;
+        this.allowedRead = Boolean.valueOf(allowedRead);
     }
 
-    public String getAllowedCreate() {
+    public Boolean getAllowedCreate() {
         return allowedCreate;
     }
 
     public void setAllowedCreate(String allowedCreate) {
-        this.allowedCreate = allowedCreate;
+        this.allowedCreate = Boolean.valueOf(allowedCreate);
     }
 
-    public String getAllowedUpdate() {
+    public Boolean getAllowedUpdate() {
         return allowedUpdate;
     }
 
     public void setAllowedUpdate(String allowedUpdate) {
-        this.allowedUpdate = allowedUpdate;
+        this.allowedUpdate = Boolean.valueOf(allowedUpdate);
     }
 
-    public String getAllowedDelete() {
+    public Boolean getAllowedDelete() {
         return allowedDelete;
     }
 
     public void setAllowedDelete(String allowedDelete) {
-        this.allowedDelete = allowedDelete;
+        this.allowedDelete = Boolean.valueOf(allowedDelete);
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+    public void setUsers(){this.users = users;}
 }

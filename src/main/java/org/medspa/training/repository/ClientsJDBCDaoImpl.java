@@ -24,26 +24,22 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
 
     @Override
     public List<Clients> getClients() {
-        List<Clients> clients = new ArrayList<Clients>();
+        List<Clients> clients = new ArrayList<>();
         Logger logger = LoggerFactory.getLogger(ClientsJDBCDaoImpl.class);
         logger.debug("Started to getClients from Postgres via JDBC");
 
-        //1. Prepare required data model
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-            //2. open connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            //3. execute query
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM Clients";
             rs = stmt.executeQuery(sql);
             logger.info("Connected to DB successfully and executed the query.");
 
-            //4.extract data
             while(rs.next()){
                 long id = rs.getLong("id");
                 String firstName = rs.getString("firstName");
@@ -52,7 +48,6 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
                 String emailAddress = rs.getString("emailAddress");
                 String allergies = rs.getString("allergies");
                 String targets = rs.getString("targets");
-
 
                 Clients client = new Clients();
                 client.setId(id);
@@ -71,7 +66,6 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
 
         }catch (SQLException e){
             logger.error("Unable to connect to DB or execute query", e);
-            //e.printStackTrace();
         }finally{
             try{
                 if (conn != null) conn.close();
@@ -79,7 +73,6 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
                 if (rs != null) rs.close();
             }catch (SQLException e){
                 logger.error("Unable to close db connection", e);
-                //e.printStackTrace();
             }
         }
         logger.info("finish getClients, %s", clients);
@@ -95,7 +88,6 @@ public class ClientsJDBCDaoImpl implements iClientsDao {
     public Clients update(Clients clients) {
         return null;
     }
-
 
     @Override
     public boolean delete(Clients clients) {
