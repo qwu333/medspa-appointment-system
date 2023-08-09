@@ -1,13 +1,18 @@
 package org.medspa.training.repository;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.medspa.training.model.Treatments;
 import org.medspa.training.model.User;
+import org.medspa.training.repository.exception.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 @Repository
@@ -45,8 +50,27 @@ public class UserDaoImpl implements iUserDao{
             return query.uniqueResult();
         } catch (Exception e) {
             logger.error("error: {}", e.getMessage());
-            throw new Exception("can't find user record with email="+email + ", password="+password);
+            throw new UserNotFoundException("can't find user record with email="+email + ", password="+password);
         }
+    }
+
+    @Override
+    public List<User> getUser() {
+
+        List<User> user;
+        Session session = sessionFactory.openSession();
+        try {
+            String hql = "FROM User";
+            Query<User> query = session.createQuery(hql);
+            user = query.list();
+
+            session.close();
+        } catch (HibernateException e) {
+            logger.error("Open session exception of lose session exception", e);
+            throw e;
+        }
+        logger.info("Get treatments {}", user);
+        return user;
     }
     //log in by username
 }

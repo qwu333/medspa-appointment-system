@@ -1,6 +1,7 @@
 package org.medspa.training.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +9,15 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+    public User(){}
+    public User(long id, String password, String secretKey,String firstName,String lastName,String email){
+        this.id = id;
+        this.password=password;
+        this.secretKey = secretKey;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -51,7 +61,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = DigestUtils.md5Hex(password.trim());
     }
 
     public String getSecretKey() {

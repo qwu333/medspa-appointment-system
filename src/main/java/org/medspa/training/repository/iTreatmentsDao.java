@@ -7,7 +7,7 @@ import java.util.List;
 public interface iTreatmentsDao {
 
     void save(Treatments treatments);
-    List<Treatments> getTreatments();// retrieve
+    List<Treatments> getTreatments();
 
     Treatments getByTreatmentName(String treatmentName);
 
