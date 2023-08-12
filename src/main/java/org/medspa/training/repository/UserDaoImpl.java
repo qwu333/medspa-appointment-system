@@ -33,8 +33,20 @@ public class UserDaoImpl implements iUserDao{
     }
 
     @Override
-    public User getUserById(Long id){
-        return null;
+    public User getUserById(Long id) {
+        Session s = sessionFactory.openSession();
+        String hql = "FROM User d where id= :Id";
+        try {
+            Query<User> query = s.createQuery(hql);
+            query.setParameter("Id", id);
+            User result = query.uniqueResult();
+            s.close();
+            return result;
+        } catch (HibernateException e) {
+            logger.error("Session close exception try again", e);
+            s.close();
+            return null;
+        }
     }
 
     @Override
@@ -56,7 +68,6 @@ public class UserDaoImpl implements iUserDao{
 
     @Override
     public List<User> getUser() {
-
         List<User> user;
         Session session = sessionFactory.openSession();
         try {
@@ -69,8 +80,7 @@ public class UserDaoImpl implements iUserDao{
             logger.error("Open session exception of lose session exception", e);
             throw e;
         }
-        logger.info("Get treatments {}", user);
+        logger.info("Get user {}", user);
         return user;
     }
-    //log in by username
 }

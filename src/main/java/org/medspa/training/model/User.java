@@ -10,14 +10,6 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     public User(){}
-    public User(long id, String password, String secretKey,String firstName,String lastName,String email){
-        this.id = id;
-        this.password=password;
-        this.secretKey = secretKey;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

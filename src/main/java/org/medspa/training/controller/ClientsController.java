@@ -20,7 +20,6 @@ public class ClientsController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Clients> getClients(){
-        // logger.info("This is Clients Controller");
         List<Clients> clients = clientsService.getClients();
         return clients;
     }

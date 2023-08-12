@@ -1,6 +1,5 @@
 package org.medspa.training.service;
 
-import org.medspa.training.model.Treatments;
 import org.medspa.training.model.User;
 import org.medspa.training.repository.iUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +19,11 @@ public class UserService {
     public User getUserByCredentials(String email, String password) throws Exception{
         return userDao.getUserByCredentials(email, password);
     }
+
+    public User getUserById(Long id) throws Exception{
+        return userDao.getUserById(id);
+    }
+
+    public User getBy(long id) { return userDao.getUserById(id);}
 
 }

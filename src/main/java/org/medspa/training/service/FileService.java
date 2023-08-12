@@ -25,7 +25,6 @@ public class FileService {
             if(file == null){
                 return;
             }
-
             try {
                 s3Client.putObject(bucketName, file.getName(), file);
             }catch(AmazonServiceException e){

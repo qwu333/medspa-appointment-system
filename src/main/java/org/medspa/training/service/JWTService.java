@@ -17,14 +17,14 @@ import java.util.Date;
 
 @Service
 public class JWTService {
-    private final String SECRETE_KEY = "amy-medspa";//put it into VM option and read it out
+    private final String SECRET_KEY = "amy-medspa";//put it into VM option and read it out
     private final String ISSUER = "com.medspa";
     private final long EXPIRATION_TIME = 86400*1000;
     private Logger logger = LoggerFactory.getLogger(getClass());
     public String generateToken(User user){
 
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        byte[] apiKeySecreteBytes = DatatypeConverter.parseBase64Binary(SECRETE_KEY);
+        byte[] apiKeySecreteBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
         Key signingKey = new SecretKeySpec(apiKeySecreteBytes, signatureAlgorithm.getJcaName());
 
         Claims claims = Jwts.claims();
@@ -34,6 +34,7 @@ public class JWTService {
         claims.setIssuer(ISSUER);
         claims.setExpiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME));
 
+
         JwtBuilder builder = Jwts.builder().setClaims(claims).signWith(signatureAlgorithm, signingKey);
         String generateToken = builder.compact();
         return generateToken;
@@ -41,7 +42,7 @@ public class JWTService {
 
     public Claims decryptToken(String token){
         Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRETE_KEY))
+                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
                 .parseClaimsJws(token).getBody();
         logger.debug("Claims " + claims.toString());
         return claims;
