@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,8 +17,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-
+@WebFilter(filterName = "securityFilter", urlPatterns = ("/*"), dispatcherTypes = {DispatcherType.REQUEST})
 public class SecurityFilter implements Filter {
+
     @Autowired
     private JWTService jwtService;
     @Autowired
@@ -49,7 +51,7 @@ public class SecurityFilter implements Filter {
             return HttpServletResponse.SC_ACCEPTED;
         }
         try{
-            String token = req.getHeader("Authorization").replaceAll("^(.*)?","");
+            String token = req.getHeader("Authorization").replaceAll("^(.*?)","");
             if(token == null || token.isEmpty()){
                 return statusCode;
             }
