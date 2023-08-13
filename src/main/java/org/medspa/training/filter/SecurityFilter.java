@@ -50,6 +50,9 @@ public class SecurityFilter implements Filter {
         if(IGNORED_PATH.contains(uri)){
             return HttpServletResponse.SC_ACCEPTED;
         }
+
+        String verb = req.getMethod();
+
         try{
             String token = req.getHeader("Authorization").replaceAll("^(.*?)","");
             if(token == null || token.isEmpty()){
@@ -60,13 +63,31 @@ public class SecurityFilter implements Filter {
             logger.info("***** after parsing JWT token, claims.getId()={}", claims.getId());
             if(claims.getId() != null){
                 User u = userService.getUserById(Long.valueOf(claims.getId()));
-                if(u != null){
-                    statusCode = HttpServletResponse.SC_ACCEPTED;
+                if(u == null){
+                    return statusCode;
                 }
             }
+            String allowedResources = "/";
+            switch (verb) {
+                case "GET": allowedResources = (String) claims.get("allowedResources");
+                case "POST": allowedResources = (String) claims.get("allowedCreateResources");
+                case "PUT": allowedResources = (String) claims.get("allowedUpdateResources");
+                case "DELETE": allowedResources = (String) claims.get("allowedDeleteResources");
+            }
+
+            for(String s : allowedResources.split(",")) {
+                if (uri.trim().toLowerCase().startsWith(s.trim().toLowerCase())) {
+                    statusCode = HttpServletResponse.SC_ACCEPTED;
+                    break;
+                }
+            }
+
+
         }catch(Exception e){
             logger.info("Cannot get token");
         }
+
+
         return statusCode;
     }
 

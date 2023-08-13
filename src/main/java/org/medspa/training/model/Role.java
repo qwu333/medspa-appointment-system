@@ -86,4 +86,17 @@ public class Role {
         return users;
     }
     public void setUsers(){this.users = users;}
+
+
+    public boolean isAllowedRead() {return allowedRead;
+    }
+
+    public boolean isAllowedCreate() {return allowedCreate;
+    }
+
+    public boolean isAllowedUpdate() {return allowedUpdate;
+    }
+
+    public boolean isAllowedDelete() {return allowedDelete;
+    }
 }
