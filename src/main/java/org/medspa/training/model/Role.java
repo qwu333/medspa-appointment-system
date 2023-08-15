@@ -1,5 +1,7 @@
 package org.medspa.training.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class Role {
     @Column(name = "allowed_delete")
     private Boolean allowedDelete;
     @ManyToMany(mappedBy ="roles")
+    @JsonIgnore
     private List<User> users;
 
 
