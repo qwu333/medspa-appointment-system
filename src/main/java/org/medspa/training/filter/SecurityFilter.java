@@ -72,6 +72,8 @@ public class SecurityFilter implements Filter {
                 case "GET": allowedResources = (String) claims.get("allowedResources");
                 case "POST": allowedResources = (String) claims.get("allowedCreateResources");
                 case "PUT": allowedResources = (String) claims.get("allowedUpdateResources");
+                //case "PATCH":
+                    //allowedResources = ()
                 case "DELETE": allowedResources = (String) claims.get("allowedDeleteResources");
             }
 
