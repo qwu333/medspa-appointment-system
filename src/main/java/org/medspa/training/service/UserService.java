@@ -26,4 +26,7 @@ public class UserService {
 
     public User getBy(long id) { return userDao.getUserById(id);}
 
+    public void save(User user) {
+        userDao.save(user);
+    }
 }

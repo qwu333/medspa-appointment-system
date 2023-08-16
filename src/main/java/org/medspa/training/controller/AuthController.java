@@ -7,6 +7,7 @@ import org.medspa.training.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,10 +39,13 @@ public class AuthController {
     }
 
     @RequestMapping(value="", method = RequestMethod.GET)
-    public List<User> getUser(){
+    public ResponseEntity<List<User>> getUser(){
         List<User> user = userService.getUser();
-        return user;
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
 
-}
+    }
+
+
+
