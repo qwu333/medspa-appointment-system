@@ -160,7 +160,7 @@
         <version>6.0.4</version>
         <configuration>
           <driver>org.postgresql.Driver</driver>
-          <url>jdbc:postgresql://localhost:5431/medspa</url>
+          <url>jdbc:postgresql://medspadb.c8cgowjkpk0k.us-east-1.rds.amazonaws.com:5432/medspa</url>
           <user>Amy</user>
           <password>Awu79613</password>
           <locations>
